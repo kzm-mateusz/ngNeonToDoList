@@ -1,0 +1,45 @@
+<div class="container">
+  <section class="hero is-small is-danger mb-2 mt-5">
+    <div class="hero-body">
+      <p class="title">Create New Task</p>
+    </div>
+  </section>
+
+  <form class="px-2 pb-2" (ngSubmit)="createTask()" #form="ngForm">
+    <div class="field">
+      <label for="content" class="label">
+        Task Name
+        <div class="control">
+          <input required type="text" class="input has-background-link has-text-black mt-2" id="content" [(ngModel)]="task.content" name="content">
+          <div class="invalid-feedback mt-1">Task name required</div>
+        </div>
+      </label>
+    </div>
+    <div class="field">
+      <label for="description" class="label">
+        Description
+        <div class="control">
+          <input type="text" class="input has-background-link has-text-black mt-2" id="description" [(ngModel)]="task.description" name="description">
+        </div>
+      </label>
+    </div>
+    <div class="field">
+      <label for="due_date" class="label">
+        Due date
+        <div class="control">
+          <input type="date" class="has-background-link has-text-black mt-2" id="due_date" [(ngModel)]="task.due_date" name="due_date">
+        </div>
+      </label>
+    </div>
+    <div class="field">
+      <label for="labels" class="label">
+        Labels
+        <div class="control">
+          <input type="text" class="input has-background-link has-text-black mt-2" id="labels" [(ngModel)]="task.labels" name="labels" placeholder="label1, label2, label3...">
+        </div>
+      </label>
+      <button type="submit" class="button is-link has-text-black has-text-weight-bold mt-3" [disabled]="form.invalid">Create Task</button>
+    </div>
+  </form>
+</div>
+

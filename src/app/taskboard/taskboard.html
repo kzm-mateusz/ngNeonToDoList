@@ -1,0 +1,40 @@
+<div class="container">
+  <section class="hero is-small is-danger mb-2 mt-5">
+    <div class="hero-body">
+      <p class="title">Task Board</p>
+    </div>
+  </section>
+  
+  <div class="px-2">
+    <div *ngFor="let task of tasks" class="card mt-2 has has-background-link has-text-white">
+      <header class="card-header" (click)="toggleDetails(task.id)">
+        <p class="card-header-title"><input type="checkbox" class="form-check-input mr-2" id="task{{task.id}}" (change)="completeTask(task.id)">
+          {{ task.content }} 
+          @for (label of task.labels; track label) {
+            <span class="tag is-primary is-normal ml-3">{{label}}</span>
+        }
+        </p>
+        <button class="card-header-icon has-text-white" aria-label="more options">
+          <span class="icon has-text-white">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+        </button>
+      </header>
+        <div *ngIf="task.showDetails" class="content pb-5 px-5 m-3">
+          <p>
+            <span class="has-text-link-80 has-text-weight-light">Description:</span>
+            <br>
+            {{ task.description }}</p>
+          <p>
+            <span *ngIf="task.due?.date"
+            class="tag is-warning is-medium has-text-weight-bold m-1">
+              Due:
+              {{task.due.date | date: 'longDate'}}
+            </span>
+          </p>
+        </div>
+    </div>
+  </div>
+  <app-task-form (taskCreated)="loadTasks()"></app-task-form>
+</div>
+
